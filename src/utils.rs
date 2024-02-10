@@ -760,8 +760,9 @@ pub fn slice_str<'a>(s: &'a str, head: &str, bounds: Range<usize>, tail: &str) -
         let mut front_ansi = String::new();
 
         while pos < bounds.start {
-            let Some((sub, is_ansi)) = code_iter.peek_mut() else {
-                break;
+            let (sub, is_ansi) = match code_iter.peek_mut() {
+                Some(x) => x,
+                None => break,
             };
 
             if *is_ansi {
