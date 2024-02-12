@@ -831,7 +831,7 @@ pub fn slice_str<'a>(s: &'a str, head: &str, bounds: Range<usize>, tail: &str) -
         if head.is_empty() && tail.is_empty() {
             Cow::Borrowed(slice)
         } else {
-            Cow::Owned(format!("{head}{slice}{tail}"))
+            Cow::Owned(format!("{}{}{}", head, slice, tail))
         }
     }
 }
